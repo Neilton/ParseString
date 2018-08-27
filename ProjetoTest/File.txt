@@ -1,0 +1,7 @@
+﻿01Jonh Smith          016Some place in NY, USA         01/01/2014L01
+01Nil0 P0000          016Some place in NY, USA         01/01/2014L01
+01Jonh Rocha          016Some place in NY, USA         01/01/2014L01
+01Jonh Pedro          016Some place in NY, USA         01/01/2014L01
+02Rua0 Alba0          010Some place in NY, USA         0484900000L01
+02Rua0 lima0          010Some place in NY, USA         0484900000L01
+02Rua0 rube0          010Some place in NY, USA         0484900000L01

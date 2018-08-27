@@ -1,0 +1,8 @@
+C:\Users\neilton\source\repos\ProjetoTest\ProjetoTest\bin\Debug\ProjetoTest.exe.config
+C:\Users\neilton\source\repos\ProjetoTest\ProjetoTest\bin\Debug\ProjetoTest.exe
+C:\Users\neilton\source\repos\ProjetoTest\ProjetoTest\bin\Debug\ProjetoTest.pdb
+C:\Users\neilton\source\repos\ProjetoTest\ProjetoTest\obj\Debug\ProjetoTest.csprojAssemblyReference.cache
+C:\Users\neilton\source\repos\ProjetoTest\ProjetoTest\obj\Debug\ProjetoTest.csproj.CoreCompileInputs.cache
+C:\Users\neilton\source\repos\ProjetoTest\ProjetoTest\obj\Debug\ProjetoTest.exe
+C:\Users\neilton\source\repos\ProjetoTest\ProjetoTest\obj\Debug\ProjetoTest.pdb
+C:\Users\neilton\source\repos\ProjetoTest\ProjetoTest\bin\Debug\File.txt
