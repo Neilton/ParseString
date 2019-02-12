@@ -1,0 +1,178 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TestNew
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loadDados(string pais="")
+        {
+            List<Cliente> clientes = new List<Cliente> {
+                new Cliente { Idade =20, Nome= "Neilton", Pais="Brazil" },
+                new Cliente { Idade =33, Nome= "Pedro", Pais="Brazil" },
+                new Cliente { Idade =23, Nome= "Andre", Pais="Hungia" },
+                new Cliente { Idade =24, Nome= "ALane", Pais="Brazil" },
+                new Cliente { Idade =25, Nome= "Ronaldo", Pais="Holanda" },
+                new Cliente { Idade =27, Nome= "Henrique", Pais="Chile" },
+                new Cliente { Idade =28, Nome= "Maria", Pais="Portugal" },
+            };
+
+            List<Pais> paises = new List<Pais>
+            {
+                new Pais { NomePais="Brazil" , Quantidade = 3 },
+                 new Pais { NomePais="Holanda", Quantidade = 1 },
+                  new Pais { NomePais="Chile" , Quantidade = 2 },
+                    new Pais { NomePais="Portugal" , Quantidade = 4 },
+
+            };
+
+            int p = 0;
+            AddHead(paises, p);
+            for (int i = 0; i < paises.Count(); i++)
+            {
+               
+
+               var clientesearch = clientes.Where(a => a.Pais.Contains(paises[i].NomePais)).ToList();
+                for (int j = 0; j < clientesearch.Count(); j++)
+                {
+                    int m = dataGridView1.Rows.Add();
+                    dataGridView1.Rows[m].Cells[1].Value = clientesearch[j].Nome;
+                    dataGridView1.Rows[m].Cells[2].Value = clientesearch[j].Pais;
+                }
+
+                AddHead(paises, p);
+                p++;
+
+
+            }
+
+            //  dataGridView1.DataSource = clientes;
+        }
+        private void AddHead(List<Pais> paises, int row)
+        {
+            int n = dataGridView1.Rows.Add();
+            dataGridView1.Rows[n].Cells[1].Value = paises[row].NomePais;
+            dataGridView1.Rows[n].Cells[2].Value = paises[row].Quantidade;
+            dataGridView1.Rows[n].DefaultCellStyle.BackColor = Color.Gray;
+        }
+
+        private void loadDadosNew(string pais = "")
+        {
+            List<Cliente> clientes = new List<Cliente> {
+                new Cliente { Idade =20, Nome= "Pato", Pais="Brazil" },
+                new Cliente { Idade =33, Nome= "Pedro", Pais="Brazil" },
+                new Cliente { Idade =23, Nome= "Andre", Pais="Hungia" },
+                new Cliente { Idade =24, Nome= "ALane", Pais="Brazil" },
+                new Cliente { Idade =25, Nome= "Ronaldo", Pais="Holanda" },
+                new Cliente { Idade =27, Nome= "Henrique", Pais="Chile" },
+                new Cliente { Idade =28, Nome= "Maria", Pais="Portugal" },
+            };
+
+            List<Pais> paises = new List<Pais>
+            {
+                new Pais { NomePais="Brazil" , Quantidade = 3 },
+                 new Pais { NomePais="Holanda", Quantidade = 1 },
+                  new Pais { NomePais="Chile" , Quantidade = 2 },
+                    new Pais { NomePais="Portugal" , Quantidade = 4 },
+
+            };
+
+            if (!string.IsNullOrEmpty(pais))
+            {
+                paises = paises.Where(x => x.NomePais.Contains(pais)).ToList();
+            }
+            dataGridView2.DataSource = null;
+            int p = 0;
+            AddHeadNew(paises, p);
+            for (int i = 0; i < paises.Count(); i++)
+            {
+
+
+                var clientesearch = clientes.Where(a => a.Pais.Contains(paises[i].NomePais)).ToList();
+                for (int j = 0; j < clientesearch.Count(); j++)
+                {
+                    int m = dataGridView2.Rows.Add();
+                    dataGridView2.Rows[m].Cells[1].Value = clientesearch[j].Nome;
+                    dataGridView2.Rows[m].Cells[2].Value = clientesearch[j].Pais;
+                }
+
+                AddHeadNew(paises, p);
+                p++;
+
+
+            }
+
+            //  dataGridView1.DataSource = clientes;
+        }
+        private void AddHeadNew(List<Pais> paises, int row)
+        {
+            int n = dataGridView2.Rows.Add();
+            dataGridView2.Rows[n].Cells[1].Value = paises[row].NomePais;
+            dataGridView2.Rows[n].Cells[2].Value = paises[row].Quantidade;
+            dataGridView2.Rows[n].DefaultCellStyle.BackColor = Color.Gray;
+        }
+
+
+        private void btnDadosFiltrado_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btnDados_Click(object sender, EventArgs e)
+        {
+            loadDados();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MessageBox.Show("Projeto Test");
+
+            DataGridView dgv = sender as DataGridView;
+            if (dgv == null)
+                return;
+            tabnew.SelectedTab = tabFiltro;
+
+           
+
+            loadDadosNew( Convert.ToString(dgv.CurrentCell.Value));
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+    }
+
+    public class Cliente
+    {
+        public int Idade { get; set; }
+        public string Nome { get; set; }
+        public string Pais { get; set; }
+    }
+
+    public class Pais
+    {
+        public string NomePais { get; set; }
+        public int Quantidade { get; set; }
+        public List<Cliente> Clientes  { get; set; }
+    }
+
+}
