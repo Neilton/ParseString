@@ -1,0 +1,136 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TestNew
+{
+    public partial class FormEditGrid : Form
+    {
+        public FormEditGrid()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<Cliente> clientes = new List<Cliente> {
+                new Cliente { Idade =20, Nome= "Pato", Pais="Brazil" },
+                new Cliente { Idade =33, Nome= "Pedro", Pais="Brazil" },
+                new Cliente { Idade =23, Nome= "Andre", Pais="Hungia" },
+                new Cliente { Idade =24, Nome= "ALane", Pais="Brazil" },
+                new Cliente { Idade =25, Nome= "Ronaldo", Pais="Holanda" },
+                new Cliente { Idade =27, Nome= "Henrique", Pais="Chile" },
+                new Cliente { Idade =28, Nome= "Maria", Pais="Portugal" },
+            };
+
+            List<Pais> paises = new List<Pais>
+            {
+                new Pais { Id = 1 , NomePais="Brazil" , Quantidade = 3 },
+                 new Pais { Id = 2 , NomePais="Holanda", Quantidade = 1 },
+                  new Pais { Id = 3 , NomePais="Chile" , Quantidade = 2 },
+                    new Pais { Id = 4 , NomePais="Portugal" , Quantidade = 4 },
+
+            };
+
+            //   Worksheet sheet = workbook.Worksheets[0];
+
+            //https://www.e-iceblue.com/Tutorials/Spire.XLS/Spire.XLS-Program-Guide/Conversion/Convert-worksheet-to-PDF-in-C-VB.NET.html
+            // ExcelFile.Load("Workbook.xlsx").Save("Workbook.pdf");
+
+            dtGridEdit.DataSource = null;
+
+
+            DataGridViewComboBoxColumn rxColumn = new DataGridViewComboBoxColumn();
+            rxColumn.Name = "Paises";
+            //rxColumn.DataPropertyName = "BRxs";
+            var datafrequencies = paises;
+            rxColumn.DataSource = datafrequencies;
+            rxColumn.ValueMember = "Id";
+            rxColumn.DisplayMember = "NomePais";
+            dtGridEdit.Columns.Add(rxColumn);
+
+
+            dtGridEdit.DataSource = clientes;
+
+            /// dtGridEdit.
+
+
+        }
+
+        private void dtGridEdit_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dtGridEdit_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > 0)
+            {
+                var row = dtGridEdit.Rows[e.RowIndex];
+                var changedValue = (string)row.Cells[e.ColumnIndex].Value;
+
+            }
+
+        }
+
+        private void dtGridEdit_RowEnter(object sender,
+    DataGridViewCellEventArgs e)
+        {
+            for (int i = 0; i < dtGridEdit.Rows[e.RowIndex].Cells.Count; i++)
+            {
+                dtGridEdit[i, e.RowIndex].Style.BackColor = Color.Yellow;
+            }
+        }
+
+        private void dtGridEdit_RowLeave(object sender,
+            DataGridViewCellEventArgs e)
+        {
+            for (int i = 0; i < dtGridEdit.Rows[e.RowIndex].Cells.Count; i++)
+            {
+                dtGridEdit[i, e.RowIndex].Style.BackColor = Color.Empty;
+            }
+        }
+
+        private void dtGridEdit_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex  >=  0)
+            {
+                var row = dtGridEdit.Rows[e.RowIndex];
+                var changedValue = (string)row.Cells[e.ColumnIndex].Value;
+
+            }
+        }
+
+
+        //object missing = Type.Missing;
+        //public Tyburn1()
+        //{
+        //    Excel.Application oXL = new Excel.Application();
+        //    oXL.Visible = false;
+        //    Excel.Workbook oWB = oXL.Workbooks.Add(missing);
+        //    Excel.Worksheet oSheet = oWB.ActiveSheet as Excel.Worksheet;
+        //    oSheet.Name = "The first sheet";
+        //    oSheet.Cells[1, 1] = "Something";
+        //    Excel.Worksheet oSheet2 = oWB.Sheets.Add(missing, missing, 1, missing)
+        //                    as Excel.Worksheet;
+        //    oSheet2.Name = "The second sheet";
+        //    oSheet2.Cells[1, 1] = "Something completely different";
+        //    string fileName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+        //                            + "\\SoSample.xlsx";
+        //    oWB.SaveAs(fileName, Excel.XlFileFormat.xlOpenXMLWorkbook,
+        //        missing, missing, missing, missing,
+        //        Excel.XlSaveAsAccessMode.xlNoChange,
+        //        missing, missing, missing, missing, missing);
+        //    oWB.Close(missing, missing, missing);
+        //    oXL.UserControl = true;
+        //    oXL.Quit();
+        //}
+
+    }
+}
